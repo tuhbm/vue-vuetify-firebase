@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer
+      class="pt-2"
       temporary
       fixed
       v-model="sideNav"
