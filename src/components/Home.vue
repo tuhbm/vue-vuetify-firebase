@@ -1,6 +1,6 @@
 <template>
-    <v-container>
-      <v-layout row wrpa>
+    <v-container class="mt-0">
+      <v-layout row wrpa class="mb-3">
         <v-flex xs12 sm6 class="text-xs-center text-sm-right">
           <v-btn large router to="/meetups" class="primary">Explore Meetups</v-btn>
         </v-flex>
