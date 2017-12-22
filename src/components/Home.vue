@@ -10,11 +10,13 @@
       </v-layout>
       <v-layout row wrap class="mb-2">
         <v-flex xs12>
-          <v-carousel>
+          <v-carousel style="cursor:pointer">
             <v-carousel-item
               v-for="meetup in meetups"
               :src="meetup.imageUrl"
-              :key="meetup.id">
+              :key="meetup.id"
+              @click="onLoadMeetup(meetup.id)"
+            >
               <div class="title">
                 {{meetup.title}}
               </div>
@@ -32,13 +34,23 @@
 
 <script>
   export default {
-    data () {
-      return {
-        meetups: [
-          { imageUrl: 'http://d1aueex22ha5si.cloudfront.net/TEMP/time-square-new-york-city-istock-487537456-2-1501663358549.jpg', id: 'fjdsklafjldksafjlkdsafj123', title: 'Meetup in NewYork' },
-          { imageUrl: 'http://europeanbusinessmagazine.com/wp-content/uploads/2017/07/paris.jpg', id: 'fjdsklafjldksafjlkdsafj1234', title: 'Meetup in Paris' },
-          { imageUrl: 'https://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2016/09/shutterstock_407897917-lotte-world-tower-seoul-61bbde30f1cf.jpg', id: 'fjdsklafjldksafjlkdsafj112345', title: 'Meetup in Seoul' }
-        ]
+    // data () {
+    //   return {
+    //     meetups: [
+    //       { imageUrl: 'http://d1aueex22ha5si.cloudfront.net/TEMP/time-square-new-york-city-istock-487537456-2-1501663358549.jpg', id: 'fjdsklafjldksafjlkdsafj123', title: 'Meetup in NewYork' },
+    //       // { imageUrl: 'http://europeanbusinessmagazine.com/wp-content/uploads/2017/07/paris.jpg', id: 'fjdsklafjldksafjlkdsafj1234', title: 'Meetup in Paris' },
+    //       { imageUrl: 'https://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2016/09/shutterstock_407897917-lotte-world-tower-seoul-61bbde30f1cf.jpg', id: 'fjdsklafjldksafjlkdsafj112345', title: 'Meetup in Seoul' }
+    //     ]
+    //   }
+    // },
+    computed: {
+      meetups () {
+        return this.$store.getters.featureMeetups
+      }
+    },
+    methods: {
+      onLoadMeetup (id) {
+        this.$router.push('/meetups/' + id)
       }
     }
   }
