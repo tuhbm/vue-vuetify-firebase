@@ -23,7 +23,7 @@ export default new Router({
       component: Meetups
     },
     {
-      path: '/meetups/new',
+      path: '/createMeetup',
       name: 'CreateMeetup',
       component: CreateMeetup
     },

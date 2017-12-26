@@ -12,9 +12,9 @@
                   ></v-card-media>
                 </v-flex>
                 <v-flex xs7 sm8 md9>
-                  <v-card-title primary-title>
+                  <v-card-title>
                     <div>
-                      <h3 class="white--text mb-0">{{ meetup.title }}</h3>
+                      <h3 class="white--text mb-2">{{ meetup.title }}</h3>
                       <div>{{ meetup.date }}</div>
                     </div>
                   </v-card-title>

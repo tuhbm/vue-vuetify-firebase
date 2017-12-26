@@ -4,7 +4,7 @@
       <v-flex xs12>
         <v-card>
           <v-card-title>
-            <h4 class="primary--text">{{ meetup.title}}</h4>
+            <h3 class="primary--text">{{ meetup.title}}</h3>
           </v-card-title>
           <v-card-media
             :src="meetup.imageUrl"
@@ -12,8 +12,8 @@
           >
           </v-card-media>
           <v-card-text>
-            <div class="info--text">{{ meetup.date }} - Where it takes place</div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, aliquam aperiam, consectetur consequuntur cum cupiditate dolore doloribus error inventore minus molestiae nam nesciunt odit omnis qui rerum sed veritatis voluptatem.
+            <div class="info--text">{{ meetup.date }} - {{ meetup.location }}</div>
+            <div>{{ meetup.description }}</div>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
