@@ -8,14 +8,14 @@
                 <v-flex xs5 sm4 md3>
                   <v-card-media
                     :src="meetup.imageUrl"
-                    height="130px"
+                    height="140px"
                   ></v-card-media>
                 </v-flex>
                 <v-flex xs7 sm8 md9>
                   <v-card-title>
                     <div>
                       <h3 class="white--text mb-2">{{ meetup.title }}</h3>
-                      <div>{{ meetup.date }}</div>
+                      <div>{{ meetup.date | date }}</div>
                     </div>
                   </v-card-title>
                   <v-card-actions>

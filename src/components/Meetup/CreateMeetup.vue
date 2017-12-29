@@ -154,7 +154,7 @@
         }
 
         const [year, month, day] = date.split('-')
-        return `${year}-${month}-${day}`
+        return `${year}/${month}/${day}`
       },
       parseDate (date) {
         if (!date) {
