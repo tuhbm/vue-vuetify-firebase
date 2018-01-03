@@ -43,7 +43,7 @@
         if (!this.userIsAuthenticated) {
           return false
         }
-        return this.$store.getters.user.id === this.meetup.creatorId
+        return this.$store.getters.user.id === this.meetup.createId
       }
     }
   }
