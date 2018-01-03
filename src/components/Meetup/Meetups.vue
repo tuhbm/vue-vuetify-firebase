@@ -38,6 +38,15 @@
     computed: {
       meetups () {
         return this.$store.getters.loadedMeetups
+      },
+      userIsAuthenticated () {
+        return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+      },
+      userIsCreator () {
+        if (!this.userIsAuthenticated) {
+          return false
+        }
+        return this.$store.getters.user.id === this.meetup.creatorId
       }
     }
   }

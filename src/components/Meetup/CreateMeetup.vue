@@ -2,7 +2,7 @@
   <v-container class="mt-0">
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <h4 class="secondary--text">Create a new Meetup</h4>
+        <h2 class="secondary--text">Create a new Meetup</h2>
       </v-flex>
     </v-layout>
     <v-layout row>
@@ -30,12 +30,12 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                name="imageUrl"
-                label="Image URL"
-                id="image-url"
-                v-model="imageUrl"
-                required></v-text-field>
+              <v-btn dark raised class="red darken-1" @click="onPickFIle">Upload Image</v-btn>
+              <input
+                type="file"
+                style="display:none;"
+                ref="fileInput" accept="image/*"
+              @change="onFilePicked">
             </v-flex>
           </v-layout>
           <v-layout>
@@ -116,7 +116,8 @@
         description: '',
         date: null,
         dateFormatted: null,
-        menu: false
+        menu: false,
+        image: null
       }
     },
     computed: {
@@ -129,7 +130,6 @@
       },
       submitTableDateTime () {
         const date = this.date
-        console.log(date)
         return date
       }
     },
@@ -138,21 +138,39 @@
         if (!this.formIsVaild) {
           return
         }
+        if (!this.image) {
+          return
+        }
         const meetupData = {
           title: this.title,
           location: this.location,
-          imageUrl: this.imageUrl,
+          image: this.image,
           description: this.description,
           date: this.submitTableDateTime
         }
         this.$store.dispatch('createMeetup', meetupData)
         this.$router.push('/meetups')
       },
+      onPickFIle () {
+        this.$refs.fileInput.click()
+      },
+      onFilePicked () {
+        const files = event.target.files
+        let filename = files[0].name
+        if (filename.lastIndexOf('.') <= 0) {
+          return alert('Please add a valid file!')
+        }
+        const fileReader = new FileReader()
+        fileReader.addEventListener('load', () => {
+          this.imageUrl = fileReader.result
+        })
+        fileReader.readAsDataURL(files[0])
+        this.image = files[0]
+      },
       formatDate (date) {
         if (!date) {
           return null
         }
-
         const [year, month, day] = date.split('-')
         return `${year}/${month}/${day}`
       },
@@ -160,7 +178,6 @@
         if (!date) {
           return null
         }
-
         const [month, day, year] = date.split('/')
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
       }
